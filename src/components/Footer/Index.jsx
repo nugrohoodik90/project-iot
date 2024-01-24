@@ -1,10 +1,6 @@
 import React from 'react'
 import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs"
 import { SiGmail, SiTelegram } from "react-icons/si"
-import bni from "../../source/atm/bni.png"
-import bca from "../../source/atm/BCA.png"
-import gopay from "../../source/atm/GOPAY.png"
-import ovo from "../../source/atm/OVO.png"
 
 export default function Footer() {
   return (
@@ -57,16 +53,6 @@ export default function Footer() {
               </div>
               <div className="col-lg col-sm col-md  mb-4 mb-md-0">
                 <h5 className="text-uppercase">Payment's Methods</h5>
-
-                <ul className="list-unstyled mb-0">
-                  <img src={bni} className="img-center" alt="bni" style={{width:"45px", height:"auto"}} />
-                  <img src={bca} className="img-center mx-2" alt="bni" style={{width:"45px", height:"auto"}} />
-                  <img src={gopay} className="img-center mx-2" alt="bni" style={{width:"45px", height:"auto"}} />
-                  <img src={ovo} className="img-center" alt="bni" style={{width:"25px", height:"auto"}} />
-                  {/* <li>
-                    <a href="#!" className="text-white">Link 1</a>
-                  </li> */}
-                </ul>
               </div>
             </div>
           </section>

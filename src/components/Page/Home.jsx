@@ -1,6 +1,4 @@
 import React from 'react'
-import carousel from "../../source/carousel.jpg"
-import carousel_2 from "../../source/carousel_2.jpg"
 
 
 function Home() {
@@ -15,14 +13,14 @@ function Home() {
         </ol>
         <div className="carousel-inner">
           <div className="carousel-item active">
-            <img src={carousel} className="d-block w-100" alt="carousel" />
+            {/* <img src={carousel} className="d-block w-100" alt="carousel" /> */}
             <div className="carousel-caption d-none d-md-block">
               <h5>First slide label</h5>
               <p>Some representative placeholder content for the first slide.</p>
             </div>
           </div>
           <div className="carousel-item">
-            <img src={carousel_2} className="d-block w-100" alt="carousel_1" />
+            {/* <img src={carousel_2} className="d-block w-100" alt="carousel_1" /> */}
             <div className="carousel-caption d-none d-md-block">
               <h5>Second slide label</h5>
               <p>Some representative placeholder content for the second slide.</p>
