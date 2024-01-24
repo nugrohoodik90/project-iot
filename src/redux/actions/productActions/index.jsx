@@ -2,12 +2,12 @@ import axios from "axios"
 
 export default function productsActions(){
     return dispatch => {
-        axios.get("http://localhost:3300/Products").then(res =>{
-            console.log(res.status);
+        axios.get("https://expressjs-postgres-production-cd3a.up.railway.app/api/measureget").then(res =>{
+            console.log(res);
             dispatch({
-                type: "PRODUCTS",
+                type : "PRODUCTS",
                 payload: res.data
-            })
+            });
         }).catch(err=>{
             console.log("error",err);
         })

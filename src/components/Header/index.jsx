@@ -1,37 +1,70 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
 
-export default function Header() {
-    return (
-        <div className="raw justify-content-center">
-            <nav className="navbar">
-                <ul className="nav justify-content-center ">
-                    <li className="nav-item">
-                        <Link className="nav-link active" to="/">Home</Link>
-                    </li>
-                    {/*  belum di buat alamatnya
-                    <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a className="dropdown-item" href="#">Action</a>
-                            <a className="dropdown-item" href="#">Another action</a>
-                            <div className="dropdown-divider"></div>
-                            <a className="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li> */}
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/products">Product</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/about">About</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/contactus">Contact</Link>
-                    </li>
-                </ul>
-            </nav>
+// components
+
+import CardStats from "components/Cards/CardStats.js";
+
+export default function HeaderStats() {
+  return (
+    <>
+      {/* Header */}
+      <div className="relative bg-lightBlue-600 md:pt-32 pb-32 pt-12">
+        <div className="px-4 md:px-10 mx-auto w-full">
+          <div>
+            {/* Card stats */}
+            <div className="flex flex-wrap">
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+                <CardStats
+                  statSubtitle="TRAFFIC"
+                  statTitle="350,897"
+                  statArrow="up"
+                  statPercent="3.48"
+                  statPercentColor="text-emerald-500"
+                  statDescripiron="Since last month"
+                  statIconName="far fa-chart-bar"
+                  statIconColor="bg-red-500"
+                />
+              </div>
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+                <CardStats
+                  statSubtitle="NEW USERS"
+                  statTitle="2,356"
+                  statArrow="down"
+                  statPercent="3.48"
+                  statPercentColor="text-red-500"
+                  statDescripiron="Since last week"
+                  statIconName="fas fa-chart-pie"
+                  statIconColor="bg-orange-500"
+                />
+              </div>
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+                <CardStats
+                  statSubtitle="SALES"
+                  statTitle="924"
+                  statArrow="down"
+                  statPercent="1.10"
+                  statPercentColor="text-orange-500"
+                  statDescripiron="Since yesterday"
+                  statIconName="fas fa-users"
+                  statIconColor="bg-pink-500"
+                />
+              </div>
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+                <CardStats
+                  statSubtitle="PERFORMANCE"
+                  statTitle="49,65%"
+                  statArrow="up"
+                  statPercent="12"
+                  statPercentColor="text-emerald-500"
+                  statDescripiron="Since last month"
+                  statIconName="fas fa-percent"
+                  statIconColor="bg-lightBlue-500"
+                />
+              </div>
+            </div>
+          </div>
         </div>
-    )
+      </div>
+    </>
+  );
 }
