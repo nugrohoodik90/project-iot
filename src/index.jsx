@@ -5,8 +5,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
-import Admin from "./layouts/Admin"
+import Admin from "./views/admin/dashboard"
 import Landing from "./views/index"
+import Settings from "./views/admin/setting";
+import Tables from "./views/admin/table";
+
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./assets/styles/tailwind.css";
 
@@ -16,7 +19,9 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/admin/dasboard" element={<Admin />}/>
+          <Route path="/admin/dashboard" element={<Admin />}/>
+          <Route path="/admin/settings" element={<Settings />}/>
+          <Route path="/admin/tables" element={<Tables />}/>
           <Route path="/" element={<Landing/>}/>
         </Routes>
       </BrowserRouter>
