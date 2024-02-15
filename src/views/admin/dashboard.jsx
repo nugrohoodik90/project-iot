@@ -1,9 +1,19 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useEffect } from "react";
+
+import { useSelector } from "react-redux";
 
 import Sidebar from "../../components/Sidebar";
+import productAtions from "../../redux/actions/productActions";
+import { useDispatch } from "react-redux";
 
 export default function Admin() {
+  const store = useSelector(store => store.ProductsReducers);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(productAtions());
+  },[dispatch])
   return (
     <>
       <Sidebar />
