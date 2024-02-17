@@ -1,36 +1,47 @@
 import React from "react";
 import Chart from "chart.js";
 
+import { useDispatch, useSelector } from "react-redux";
+import termoActions from "../../redux/actions/termoActions";
+
 export default function CardBarChart() {
+  const dataCharts = useSelector((state) => state.ProductsReducers);
+  const dispatch = useDispatch();
+
+  console.log(dataCharts);
+
+  React.useEffect(() => {
+    dispatch(termoActions());
+  }, [dispatch])
   React.useEffect(() => {
     let config = {
       type: "bar",
       data: {
         labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
         ],
         datasets: [
           {
-            label: new Date().getFullYear(),
+            label: `Termo ${new Date().getFullYear() - 1}`,
             backgroundColor: "#ed64a6",
             borderColor: "#ed64a6",
             data: [30, 78, 56, 34, 100, 45, 13],
             fill: false,
-            barThickness: 10,
+            barThickness: 15,
           },
           {
-            label: new Date().getFullYear() - 1,
+            label: `PH ${new Date().getFullYear() - 1}`,
             fill: false,
             backgroundColor: "#4c51bf",
             borderColor: "#4c51bf",
             data: [27, 68, 86, 74, 10, 4, 87],
-            barThickness: 10,
+            barThickness: 7,
           },
         ],
       },
@@ -39,7 +50,7 @@ export default function CardBarChart() {
         responsive: true,
         title: {
           display: false,
-          text: "Orders Chart",
+          text: "Ph Chart",
         },
         tooltips: {
           mode: "index",
@@ -108,7 +119,7 @@ export default function CardBarChart() {
                 Performance
               </h6>
               <h2 className="text-blueGray-700 text-xl font-semibold">
-                Total orders
+                Total Sensors
               </h2>
             </div>
           </div>

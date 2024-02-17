@@ -29,7 +29,6 @@ export default function CardPageVisits(props) {
       </td>
     </tr>
   ));
-  console.log(dataTables.Products)
 
   return (
     <>
