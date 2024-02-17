@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export default function productsActions(){
+export default function termoActions(){
     return dispatch => {
         axios.get("https://expressjs-postgres-production-cd3a.up.railway.app/api/termoget").then(res =>{
             dispatch({

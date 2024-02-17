@@ -1,35 +1,47 @@
 import React from "react";
 import Chart from "chart.js";
 
+import { useDispatch, useSelector } from "react-redux";
+import termoActions from "../../redux/actions/termoActions";
+
 export default function CardLineChart() {
+  const dataCharts = useSelector((state) => state.ProductsReducers);
+  const dispatch = useDispatch();
+
+  console.log(dataCharts);
+
+  React.useEffect(() => {
+    dispatch(termoActions());
+  }, [dispatch]) 
+
   React.useEffect(() => {
     var config = {
       type: "line",
       data: {
         labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
         ],
         datasets: [
           {
             label: new Date().getFullYear(),
             backgroundColor: "#4c51bf",
-            borderColor: "#4c51bf",
-            data: [65, 78, 66, 44, 56, 67, 75],
-            fill: false,
-          },
-          {
-            label: new Date().getFullYear() - 1,
-            fill: false,
-            backgroundColor: "#fff",
             borderColor: "#fff",
-            data: [40, 68, 86, 74, 56, 60, 87],
+            data: [24.4, 22, 25, 26, 24, 23, 26],
+            fill: false,
           },
+          // {
+          //   label: new Date().getFullYear() - 1,
+          //   fill: false,
+          //   backgroundColor: "#fff",
+          //   borderColor: "#fff",
+          //   data: [40, 68, 86, 74, 56, 60, 87],
+          // },
         ],
       },
       options: {
@@ -37,7 +49,7 @@ export default function CardLineChart() {
         responsive: true,
         title: {
           display: false,
-          text: "Sales Charts",
+          text: "Termo Charts",
           fontColor: "white",
         },
         legend: {
@@ -64,7 +76,7 @@ export default function CardLineChart() {
               display: true,
               scaleLabel: {
                 display: false,
-                labelString: "Month",
+                labelString: "Day",
                 fontColor: "white",
               },
               gridLines: {
@@ -115,12 +127,11 @@ export default function CardLineChart() {
               <h6 className="uppercase text-blueGray-100 mb-1 text-xs font-semibold">
                 Overview
               </h6>
-              <h2 className="text-white text-xl font-semibold">Sales value</h2>
+              <h2 className="text-white text-xl font-semibold">Termo value</h2>
             </div>
           </div>
         </div>
         <div className="p-4 flex-auto">
-          {/* Chart */}
           <div className="relative h-350-px">
             <canvas id="line-chart"></canvas>
           </div>
