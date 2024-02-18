@@ -1,8 +1,50 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { ItemsDropsdowns } from "../ItemsDropdowns";
+import { useDispatch, useSelector } from "react-redux";
+
+import relaysActions from "../../redux/actions/relayActions";
 
 // components
+export const drop = [
+  {
+    "key": "1",
+    "lable": "1000"
+  },
+  {
+    "key": "2",
+    "lable": "2000"
+  },
+  {
+    "key": "3",
+    "lable": "3000"
+  }
+]
+export const RelayOptions = [
+  {
+    "key": true,
+    "lable": "On"
+  },
+  {
+    "key": false,
+    "lable": "Off"
+  },
+]
 
 export default function CardSettings() {
+  const dataRelays = useSelector((state) => state.RelaysReducers);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(relaysActions(1));
+
+    handleOnchange(dataRelays.value);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[dispatch])
+
+  const handleOnchange = (e) => {
+    console.log(e);
+  }
+
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
@@ -17,17 +59,11 @@ export default function CardSettings() {
               User Information
             </h6>
             <div className="flex flex-wrap">
-              <div className="w-full lg:w-6/12 px-4">
-                <label
-                  className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                  htmlFor="grid-password"
-                >
-                  Test
-                </label>
-                <div className="form-check form-switch">
-                  <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" defaultChecked={false} />
-                  <label className="ml-2 form-check-label" htmlFor="flexSwitchCheckDefault">System on</label>
-                </div>
+              <div className="w-full lg:w-6/12 px-4 py-4">
+                <ItemsDropsdowns label="System Relay Setting" options={RelayOptions} onChange={(e) => handleOnchange(e.target.value)}/>
+              </div>
+              <div className="w-full lg:w-6/12 px-4 py-4">
+                <ItemsDropsdowns label="Load Feeder Setting (/gr)" options={drop} />
               </div>
             </div>
 
