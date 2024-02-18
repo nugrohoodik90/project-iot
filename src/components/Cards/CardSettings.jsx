@@ -1,48 +1,69 @@
-import React, { useEffect } from "react";
-import { ItemsDropsdowns } from "../ItemsDropdowns";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import relaysActions from "../../redux/actions/relayActions";
+import { relaysActions, updateRelaysActions, updateFeederActions } from "../../redux/actions/relayActions";
+import Select from "react-select";
 
 // components
-export const drop = [
+export const FeedOptions = [
   {
-    "key": "1",
-    "lable": "1000"
+    value: "0.5",
+    label: "0.5 Kg"
   },
   {
-    "key": "2",
-    "lable": "2000"
+    value: "1",
+    label: "1 Kg"
   },
   {
-    "key": "3",
-    "lable": "3000"
-  }
+    value: "1.5",
+    label: "1.5 Kg"
+  },
 ]
 export const RelayOptions = [
   {
-    "key": true,
-    "lable": "On"
+    value: true,
+    label: "On"
   },
   {
-    "key": false,
-    "lable": "Off"
+    value: false,
+    label: "Off"
   },
 ]
 
 export default function CardSettings() {
-  const dataRelays = useSelector((state) => state.RelaysReducers);
+  const getRelays = useSelector((state) => state.RelaysReducers?.Relays);
   const dispatch = useDispatch();
 
+  const [selectedRelOption, setSelectedRelOption] = useState(Boolean);
+  const [selectedFeedOption, setSelectedFeedOption] = useState(Boolean);
+
+  const [data, setData] = useState({
+    description: "update relay",
+    value: false,
+    duration: "1",
+  });
+
+
   useEffect(() => {
-    dispatch(relaysActions(1));
+    dispatch(relaysActions());
 
-    handleOnchange(dataRelays.value);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[dispatch])
+    setSelectedRelOption(getRelays.value);
+    setSelectedFeedOption(getRelays.duration);
 
-  const handleOnchange = (e) => {
-    console.log(e);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch])
+
+  const handleRelay = (e) => {
+    setData({ ...data, value: e })
+    //no need dispatch 
+    updateRelaysActions({ data })
+  }
+  const handleFeed = (e) => {
+    console.log(data)
+    setData({ ...data, duration: e })
+    
+    //no need dispatch 
+    updateRelaysActions({ data })
   }
 
   return (
@@ -55,15 +76,35 @@ export default function CardSettings() {
         </div>
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
           <form>
-            <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+            <h6 className="text-blueGray-400 text-sm mt-3 font-bold uppercase">
               User Information
             </h6>
             <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12 px-4 py-4">
-                <ItemsDropsdowns label="System Relay Setting" options={RelayOptions} onChange={(e) => handleOnchange(e.target.value)}/>
+                <label
+                  className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  Relay Setting
+                </label>
+                <Select
+                  isSearchable={false}
+                  value={RelayOptions.find((item) => item.value === selectedRelOption)}
+                  options={RelayOptions}
+                  onChange={(e) => handleRelay(e.value)} />
               </div>
               <div className="w-full lg:w-6/12 px-4 py-4">
-                <ItemsDropsdowns label="Load Feeder Setting (/gr)" options={drop} />
+                <label
+                  className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  Feeding Load Options
+                </label>
+                <Select
+                  isSearchable={false}
+                  value={FeedOptions.find((item) => item.value === selectedFeedOption)}
+                  options={FeedOptions}
+                  onChange={(e) => handleFeed(e.value)} />
               </div>
             </div>
 
