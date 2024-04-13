@@ -2,7 +2,7 @@ import axios from "axios"
 
 export default function termoActions(){
     return dispatch => {
-        axios.get("https://expressjs-postgres-production-cd3a.up.railway.app/api/termoget").then(res =>{
+        axios.get("https://cyclic-rest-iot.onrender.com").then(res =>{
             dispatch({
                 type : "TERMO",
                 payload: res.data

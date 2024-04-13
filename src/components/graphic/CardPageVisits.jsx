@@ -13,9 +13,9 @@ export default function CardPageVisits(props) {
   }, [dispatch])
 
   const renderData = dataTables.Products.map((item, index) => (
-    <tr key={`${item.id}`}>
+    <tr key={`${item._id}`}>
       <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-        {item.id}
+        {index+1}
       </th>
       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
         {item.description}

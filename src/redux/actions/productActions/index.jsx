@@ -2,7 +2,7 @@ import axios from "axios"
 
 export default function productsActions(){
     return dispatch => {
-        axios.get("https://expressjs-postgres-production-cd3a.up.railway.app/api/measureget").then(res =>{
+        axios.get("https://cyclic-rest-iot.onrender.com/dist-get").then(res =>{
             dispatch({
                 type : "PRODUCTS",
                 payload: res.data
