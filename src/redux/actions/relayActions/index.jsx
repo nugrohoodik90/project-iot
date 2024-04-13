@@ -2,7 +2,7 @@ import axios from "axios"
 
 export function relaysActions() {
     return dispatch => {
-        axios.get("https://expressjs-postgres-production-cd3a.up.railway.app/api/relayget/1").then(res => {
+        axios.get("https://cyclic-rest-iot.onrender.com/rel-get/").then(res => {
             dispatch({
                 type: "RELAYS",
                 payload: res.data
@@ -14,7 +14,7 @@ export function relaysActions() {
 }
 
 export const updateRelaysActions = async ({data}) => {
-    await axios.put("http://expressjs-postgres-production-cd3a.up.railway.app/api/relayupdate/1", { 
+    await axios.put("https://cyclic-rest-iot.onrender.com/", { 
         description: data.description,
         value: Boolean(data.value) ,
         duration : data.duration
