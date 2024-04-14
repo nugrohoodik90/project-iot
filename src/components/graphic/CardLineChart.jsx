@@ -1,7 +1,7 @@
 import React from "react";
 import Chart from "chart.js";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import termoActions from "../../redux/actions/termoActions";
 
 export default function CardLineChart() {
