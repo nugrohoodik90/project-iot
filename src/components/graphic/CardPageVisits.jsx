@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 
-import productActions from "../../redux/actions/productActions";
+import  productActions from '../../redux/actions/productActions'
 import { useDispatch, useSelector } from "react-redux";
 
 // components
-export default function CardPageVisits(props) {
+export default function CardPageVisits() {
   const dataTables = useSelector((state) => state.ProductsReducers);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(productActions());
+    dispatch(productActions())
   }, [dispatch])
 
   const renderData = dataTables.Products.map((item, index) => (

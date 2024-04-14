@@ -5,10 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import termoActions from "../../redux/actions/termoActions";
 
 export default function CardLineChart() {
-  const dataCharts = useSelector((state) => state.ProductsReducers);
+  //const dataCharts = useSelector((state) => state.TermosReducers);
   const dispatch = useDispatch();
 
-  console.log(dataCharts);
 
   React.useEffect(() => {
     dispatch(termoActions());
