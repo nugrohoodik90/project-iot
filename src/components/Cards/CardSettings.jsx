@@ -43,9 +43,9 @@ export default function CardSettings() {
     load_1: getRelays?.load_1,
     load_2: getRelays?.load_2,
     load_3: getRelays?.load_3,
-    time_1: new Date(getRelays.time_1),
-    time_2: new Date(getRelays.time_2),
-    time_3: new Date(getRelays.time_3)
+    time_1: new Date(getRelays?.time_1),
+    time_2: new Date(getRelays?.time_2),
+    time_3: new Date(getRelays?.time_3)
   });
 
   const [selectedFeedOption, setSelectedFeedOption] = useState(Boolean);
