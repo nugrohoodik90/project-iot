@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.module.css'
+import axios from "axios"
 
-import { relaysActions, updateRelaysActions } from "../../redux/actions/relayActions";
+import { updateRelaysActions } from "../../redux/actions/relayActions";
 import Select from "react-select";
 
 // components
@@ -52,29 +53,45 @@ export default function CardSettings() {
   const [selectedTime, setSelectedTime] = useState(null);
 
   useEffect(() => {
-    dispatch(relaysActions());
-    setTimeout(() => {
-      setLoad(false);
-    }, 3000);
+    const fetch = async () => {
+      try {
+        const res = await axios.get("https://cyclic-rest-iot.onrender.com/rel-get/6603410169bdae33c35a3247")
+        if (res.status !== 200) {
+          throw new Error('error fetching')
+        }
 
-    setSelectedTime(new Date(data?.time_1))
-    setSelectedFeedOption(data?.load_1)
+        const respon = await res.data;
+        dispatch({
+          type: "RELAYS",
+          payload: res.data
+        })
+        setData(respon);
+        setSelectedTime(new Date(respon?.time_1))
+        setSelectedFeedOption(respon?.load_1)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetch();
+    setLoad(false);
+
+    
     //return (() => {})
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch])
+  }, [])
 
   const handleTimeChange = (time) => {
-    console.log(data)
+    // console.log(data)
     setSelectedTime(time);
     setData({ ...data, time_1: time.toISOString() });
   };
- const handleFeed = (e) => {
-    setSelectedFeedOption({...data, load_1: e})
+  const handleFeed = (e) => {
+    setSelectedFeedOption({ ...data, load_1: e })
     setData({ ...data, load_1: e })
   }
 
   const handleUpdate = () => {
-    console.log(data)
+    // console.log(data)
     updateRelaysActions(data)
   }
 
@@ -101,7 +118,7 @@ export default function CardSettings() {
                       //isClearable
                       selected={selectedTime}
                       onChange={handleTimeChange}
-                      value={new Date(data?.time_1)}
+                      //value={new Date(data?.time_1)}
                       placeholderText="Select Time"
                       showTimeSelect
                       //showTimeSelectOnly

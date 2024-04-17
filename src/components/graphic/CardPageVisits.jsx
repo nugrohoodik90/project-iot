@@ -1,19 +1,22 @@
 import React, { useEffect } from "react";
 
-import  productActions from '../../redux/actions/productActions'
+import productActions from '../../redux/actions/productActions'
 import { useDispatch, useSelector } from "react-redux";
 
 // components
 export default function CardPageVisits() {
-  const dataTables = useSelector((state) => state.ProductsReducers);
+  const dataTables = useSelector((state) => state?.ProductsReducers);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(productActions())
+    
+    //return (() => { })
   }, [dispatch])
 
-  const renderData = dataTables.Products.map((item, index) => (
-    <tr key={`${item._id}`}>
+  console.log(dataTables)
+  const renderData = dataTables?.Products?.map((item, index) => (
+    <tr key={`${item?._id}`}>
       <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
         {index+1}
       </th>

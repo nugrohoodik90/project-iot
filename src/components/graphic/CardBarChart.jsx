@@ -1,16 +1,17 @@
 import React from "react";
 import Chart from "chart.js";
 
-import { useDispatch } from "react-redux";
-import termoActions from "../../redux/actions/termoActions";
+//import { useDispatch } from "react-redux";
+//import termoActions from "../../redux/actions/termoActions";
 
 export default function CardBarChart() {
   //const dataCharts = useSelector((state) => state.ProductsReducers);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    dispatch(termoActions());
-  }, [dispatch])
+  // React.useEffect(() => {
+  //   dispatch(termoActions());
+  // }, [dispatch])
+
   React.useEffect(() => {
     let config = {
       type: "bar",
