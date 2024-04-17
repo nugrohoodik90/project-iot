@@ -16,9 +16,11 @@ export const updateRelaysActions = (data) => {
         load_1: data.load_1,
         load_2: data.load_2,
         load_3: data.load_3,
+        load_4: data.load_3,
         time_1: data.time_1,
         time_2: data.time_3,
-        time_3: data.time_3
+        time_3: data.time_3,
+        sync: Boolean(data.sync)
     }).then(res => {
         console.log(`${res.status}-success`);
         console.log(res.data);
