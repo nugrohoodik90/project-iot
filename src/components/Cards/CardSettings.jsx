@@ -1,11 +1,12 @@
+import 'react-datepicker/dist/react-datepicker.module.css'
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.module.css'
-import axios from "axios"
 
-import { updateRelaysActions } from "../../redux/actions/relayActions";
+import DatePicker from 'react-datepicker';
 import Select from "react-select";
+import axios from "axios"
+import { updateRelaysActions } from "../../redux/actions/relayActions";
 
 // components
 export const FeedOptions = [
@@ -90,11 +91,11 @@ export default function CardSettings() {
   const handleTimeChange = (time) => {
     // console.log(data)
     setSelectedTime(time);
-    setData({ ...data, time_1: time.toISOString() });
+    setData({ ...data, time_1: time.toString() });
   };
   const handleFeed = (e, id) => {
     
-    console.log(id)
+    //console.log(id)
     if (id === 1) {
       setSelectedFeedOption({ ...data, load_1: e })
       setData({ ...data, load_1: e })
@@ -113,7 +114,6 @@ export default function CardSettings() {
   }
 
   const handleUpdate = () => {
-    // console.log(data)
     updateRelaysActions(data)
   }
 
@@ -143,10 +143,10 @@ export default function CardSettings() {
                       //value={new Date(data?.time_1)}
                       placeholderText="Select Time"
                       showTimeSelect
-                      showTimeSelectOnly
+                      //showTimeSelectOnly
                       timeIntervals={15}
                       timeCaption="Time"
-                      dateFormat="HH:mm aa"
+                      dateFormat="DD/MM/YYYY HH:mm aa"
                       showLeadingZeros={true}
                       className="flex flex-wrap border border-gray-300 rounded px-3 py-2 w-full"
                       popperClassName="z-50" // This is to ensure the dropdown is above other elements

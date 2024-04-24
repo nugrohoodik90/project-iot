@@ -22,8 +22,8 @@ export const updateRelaysActions = (data) => {
         time_3: data.time_3,
         sync: Boolean(data.sync)
     }).then(res => {
-        console.log(`${res.status}-success`);
-        console.log(res.data);
+        console.log(`${res.status}`);
+        //console.log(res.data);
     }).catch(err => {
         console.log("error", err);
     })

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import productActions from '../../redux/actions/productActions'
-import { useDispatch, useSelector } from "react-redux";
 
 // components
 export default function CardPageVisits() {
@@ -11,7 +11,7 @@ export default function CardPageVisits() {
   useEffect(() => {
     dispatch(productActions())
     
-    //return (() => { })
+    return (() => { })
   }, [dispatch])
 
   console.log(dataTables)
