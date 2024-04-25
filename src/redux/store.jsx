@@ -9,7 +9,7 @@ const store = createStore(
       applyMiddleware(thunk),
       // redux toolkit just for dev, if not not include
       //update
-      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+      //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
   );
 export default store
