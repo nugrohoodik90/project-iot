@@ -2,7 +2,7 @@ import axios from "axios"
 
 const productsActions = () => {
     return async (dispatch) => {
-        const res = await axios.get("https://cyclic-rest-iot.onrender.com/dist-get")
+        const res = await axios.get("https://cyclic-rest-iot.onrender.com/temp-get")
 
         if (res.status === 200) {
             await dispatch({
