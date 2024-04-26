@@ -2,6 +2,8 @@ import 'react-datepicker/dist/react-datepicker.module.css'
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import DatePicker from 'react-datepicker';
 import Select from "react-select";
@@ -94,6 +96,8 @@ export default function CardSettings() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const notify = (m) => toast(m);
+
   const handleTimeChange = (time) => {
     // console.log(data)
     setSelectedTime(time);
@@ -132,9 +136,10 @@ export default function CardSettings() {
     setSelectedRel({ ...data, status: e })
     setData({ ...data, status: e })
   }
-  const handleUpdate = () => {
+  const handleUpdate = (message) => {
     //console.log(data)
     updateRelaysActions(data)
+    notify(message);
   }
 
   return (
@@ -186,7 +191,7 @@ export default function CardSettings() {
                       //showTimeSelectOnly
                       timeIntervals={15}
                       timeCaption="Time"
-                      dateFormat="DD/MM/YYYY HH:mm aa"
+                      dateFormat="dd/MM/yyyy HH:mm aa"
                       showLeadingZeros={true}
                       className="flex flex-wrap border border-gray-300 rounded px-3 py-2 w-full"
                       popperClassName="z-50" // This is to ensure the dropdown is above other elements
@@ -226,7 +231,7 @@ export default function CardSettings() {
                       //showTimeSelectOnly
                       timeIntervals={15}
                       timeCaption="Time 2"
-                      dateFormat="DD/MM/YYYY HH:mm aa"
+                      dateFormat="dd/MM/yyyy HH:mm aa"
                       showLeadingZeros={true}
                       className="flex flex-wrap border border-gray-300 rounded px-3 py-2 w-full"
                       popperClassName="z-50" // This is to ensure the dropdown is above other elements
@@ -253,7 +258,7 @@ export default function CardSettings() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Time Setting 2
+                      Time Setting 3
                     </label>
                     <DatePicker
                       id="time3"
@@ -266,7 +271,7 @@ export default function CardSettings() {
                       //showTimeSelectOnly
                       timeIntervals={15}
                       timeCaption="Time 2"
-                      dateFormat="DD/MM/YYYY HH:mm aa"
+                      dateFormat="dd/MM/yyyy HH:mm aa"
                       showLeadingZeros={true}
                       className="flex flex-wrap border border-gray-300 rounded px-3 py-2 w-full"
                       popperClassName="z-50" // This is to ensure the dropdown is above other elements
@@ -291,7 +296,7 @@ export default function CardSettings() {
                   <button
                     className="github-star sm:ml-1 text-white font-bold px-6 py-2 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg"
                     type="button"
-                    onClick={() => handleUpdate()}
+                    onClick={() => handleUpdate("update Schedule")}
                   >
                     <i className="fas fa-arrow-alt-circle-right"></i> Update Schedule
                   </button>
@@ -332,7 +337,7 @@ export default function CardSettings() {
                   <button
                     className="github-star sm:ml-1 text-white font-bold px-6 py-2 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg"
                     type="button"
-                    onClick={() => handleUpdate()}
+                    onClick={() => handleUpdate("synchronize")}
                   >
                     <i className="fas fa-arrow-alt-circle-right"></i> Run Now
                   </button>
@@ -345,6 +350,7 @@ export default function CardSettings() {
             </div>
         }
       </div>
+      <ToastContainer />
     </>
   );
 }
