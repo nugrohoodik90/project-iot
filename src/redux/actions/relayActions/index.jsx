@@ -1,4 +1,7 @@
 import axios from "axios"
+// import { toast } from 'react-toastify';
+
+// const notify = (m) => toast(m);
 
 export const relaysActions = async () => {
     const res = await axios.get("https://cyclic-rest-iot.onrender.com/rel-get/6603410169bdae33c35a3247")
@@ -22,6 +25,9 @@ export const updateRelaysActions = async (data) => {
         sync: Boolean(data.sync)
     }).then(res => {
         console.log(`${res.status}`);
+         if (res.status === 200) {
+            // notify("success");
+        }
         //console.log(res.data);
     }).catch(err => {
         console.log("error", err);

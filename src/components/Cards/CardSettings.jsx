@@ -1,30 +1,17 @@
 import 'react-datepicker/dist/react-datepicker.module.css'
-
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import React, { useEffect, useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import { useDispatch, useSelector } from "react-redux";
+
 import DatePicker from 'react-datepicker';
+import { Input } from "@material-tailwind/react"
 import Select from "react-select";
 import axios from "axios"
 import { updateRelaysActions } from "../../redux/actions/relayActions";
 
 // components
-export const FeedOptions = [
-  {
-    value: "1",
-    label: "0.5 Kg"
-  },
-  {
-    value: "3",
-    label: "1 Kg"
-  },
-  {
-    value: "4",
-    label: "1.5 Kg"
-  },
-]
 export const RelayOptions = [
   {
     value: true,
@@ -48,16 +35,13 @@ export default function CardSettings() {
     load_1: getRelays?.load_1,
     load_2: getRelays?.load_2,
     load_3: getRelays?.load_3,
+    load_4: getRelays?.load_4,
     time_1: new Date(getRelays?.time_1),
     time_2: new Date(getRelays?.time_2),
     time_3: new Date(getRelays?.time_3)
   });
 
   const [selectedRel, setSelectedRel] = useState(Boolean);
-  const [selectedFeedOption, setSelectedFeedOption] = useState(Boolean);
-  const [selectedFeedOption2, setSelectedFeedOption2] = useState(Boolean);
-  const [selectedFeedOption3, setSelectedFeedOption3] = useState(Boolean);
-  const [selectedFeedOption4, setSelectedFeedOption4] = useState(Boolean);
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedTime2, setSelectedTime2] = useState(null);
   const [selectedTime3, setSelectedTime3] = useState(null);
@@ -79,10 +63,6 @@ export default function CardSettings() {
         setSelectedTime(new Date(respon?.time_1))
         setSelectedTime2(new Date(respon?.time_2))
         setSelectedTime3(new Date(respon?.time_3))
-        setSelectedFeedOption(respon?.load_1)
-        setSelectedFeedOption2(respon?.load_2)
-        setSelectedFeedOption3(respon?.load_3)
-        setSelectedFeedOption4(respon?.load_4)
         setSelectedRel(respon?.status)
       } catch (error) {
         console.log(error)
@@ -113,22 +93,18 @@ export default function CardSettings() {
   };
 
   const handleFeed = (e, id) => {
-
-    //console.log(id)
+    //console.log(e)
+    
     if (id === 1) {
-      setSelectedFeedOption({ ...data, load_1: e })
+      // setSelectedFeedOption({ ...data, load_1: e })
       setData({ ...data, load_1: e })
     }
     if (id === 2) {
-      setSelectedFeedOption2({ ...data, load_2: e })
       setData({ ...data, load_2: e })
     } else if (id === 3) {
-      setSelectedFeedOption3({ ...data, load_3: e })
       setData({ ...data, load_3: e })
     } else if (id === 0) {
-      setSelectedFeedOption4({ ...data, load_4: e })
-      setData({ ...data, load_4: e })
-      setData({ ...data, sync: true })
+      setData({ ...data, load_4: e, sync: true })
     }
   }
 
@@ -202,14 +178,25 @@ export default function CardSettings() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Feeding Load Options
+                      Feeding Load Options (/kg)
                     </label>
-                    <Select
+                    <Input
+                      // label="Username"
+                      min="1"
+                      onChange={(e) => handleFeed(e.target.value, 1)}
+                      value={data?.load_1}
+                      type="number"
+                      className="bg-white text-gray-900 ring-4 rounded"
+                      containerProps={{
+                        className: "bg-white",
+                      }}
+                    />
+                    {/* <Select
                       id="feed"
                       isSearchable={false}
                       value={FeedOptions.find((item) => item.value === selectedFeedOption)}
                       options={FeedOptions}
-                      onChange={(e) => handleFeed(e.value, 1)} />
+                      onChange={(e) => handleFeed(e.value, 1)} /> */}
                   </div>
                 </div>
                 <div className="flex flex-wrap">
@@ -242,14 +229,25 @@ export default function CardSettings() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Feeding Load Options
+                      Feeding Load Options (/kg)
                     </label>
-                    <Select
+                    <Input
+                      // label="Username"
+                      min="1"
+                      onChange={(e) => handleFeed(e.target.value, 2)}
+                      value={data?.load_2}
+                      type="number"
+                      className="bg-white text-gray-900 ring-4 rounded"
+                      containerProps={{
+                        className: "bg-white",
+                      }}
+                    />
+                    {/* <Select
                       id="feed"
                       isSearchable={false}
                       value={FeedOptions.find((item) => item.value === selectedFeedOption2)}
                       options={FeedOptions}
-                      onChange={(e) => handleFeed(e.value, 2)} />
+                      onChange={(e) => handleFeed(e.value, 2)} /> */}
                   </div>
                 </div>
                 <div className="flex flex-wrap">
@@ -282,14 +280,25 @@ export default function CardSettings() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Feeding Load Options
+                      Feeding Load Options (/kg)
                     </label>
-                    <Select
+                    <Input
+                      // label="Username"
+                      min="1"
+                      onChange={(e) => handleFeed(e.target.value, 3)}
+                      value={data?.load_3}
+                      type="number"
+                      className="bg-white text-gray-900 ring-4 rounded"
+                      containerProps={{
+                        className: "bg-white",
+                      }}
+                    />
+                    {/* <Select
                       id="feed"
                       isSearchable={false}
                       value={FeedOptions.find((item) => item.value === selectedFeedOption3)}
                       options={FeedOptions}
-                      onChange={(e) => handleFeed(e.value, 3)} />
+                      onChange={(e) => handleFeed(e.value, 3)} /> */}
                   </div>
                 </div>
                 <div className="flex justify-center mt-3">
@@ -313,14 +322,25 @@ export default function CardSettings() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Feeding Load Options
+                      Feeding Load Options (/kg)
                     </label>
-                    <Select
+                    <Input
+                      // label="Username"
+                      min="1"
+                      onChange={(e) => handleFeed(e.target.value, 0)}
+                      value={data?.load_4}
+                      type="number"
+                      className="bg-white text-gray-900 ring-4 rounded"
+                      containerProps={{
+                        className: "bg-white",
+                      }}
+                    />
+                    {/* <Select
                       id="feed4"
                       isSearchable={false}
                       value={FeedOptions.find((item) => item.value === selectedFeedOption4)}
                       options={FeedOptions}
-                      onChange={(e) => handleFeed(e.value, 0)} />
+                      onChange={(e) => handleFeed(e.value, 0)} /> */}
 
                   </div>
                   <div className="w-full lg:w-6/12 px-4 py-3">
