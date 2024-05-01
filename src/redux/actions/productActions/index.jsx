@@ -5,7 +5,7 @@ const productsActions = () => {
         const res = await axios.get("https://cyclic-rest-iot.onrender.com/temp-get")
 
         if (res.status === 200) {
-            await dispatch({
+            dispatch({
                 type : "PRODUCTS",
                 payload: res.data
             })
